@@ -15,7 +15,6 @@ export function getNumberIntervals(ranges: Range[]) {
 
   ranges.forEach((range) => {
     const [start, end] = parseRange(range);
-    console.log([start, end]);
     for (let i = start; i <= end; i++) counter[i] += 1;
   });
 
