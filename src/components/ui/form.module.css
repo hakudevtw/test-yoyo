@@ -1,0 +1,49 @@
+.form-item {
+  font-size: smaller;
+}
+
+.form-item input {
+  height: 2rem;
+  padding: 0 0.5rem;
+  outline: none;
+  border-radius: 0;
+  border: none;
+}
+
+.form-item.error input {
+  border: 2px solid rgb(247, 127, 47);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: smaller;
+}
+
+.form-control {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgb(133, 133, 133);
+}
+
+.form-control > :first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.form-control > :last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.form-description {
+  margin-top: 0.5rem;
+  font-size: x-small;
+  text-align: end;
+}
+
+.form-message {
+  padding: 3px 5px;
+  border-radius: 3px;
+  background: #ffd7c5;
+  color: rgb(247, 127, 47);
+}
