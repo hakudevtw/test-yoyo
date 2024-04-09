@@ -1,7 +1,9 @@
+import PriceInput from "./components/form/price-input";
+
 function App() {
   return (
     <main>
-      <h1>Hello World</h1>
+      <PriceInput />
     </main>
   );
 }
