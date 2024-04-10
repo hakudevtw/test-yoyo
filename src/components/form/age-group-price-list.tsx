@@ -3,16 +3,15 @@ import AgeGroupPrice from "./age-group-price";
 import styles from "./age-group-price-list.module.css";
 import type { AgeGroupPriceType } from "../../schemas/form";
 import { getNumberIntervals } from "../../utils/numberUtils";
+import { DEFAULT_ITEM } from "../../constants";
 
 interface Props {
   data: AgeGroupPriceType[];
+  errors: Partial<Record<keyof AgeGroupPriceType, string>>[];
   onChange: (result: AgeGroupPriceType[]) => void;
-  onAdd: () => void;
-  minRows?: number;
-  maxRows?: number;
 }
 
-export default function AgeGroupPriceList({ data, onAdd, onChange }: Props) {
+export default function AgeGroupPriceList({ data, errors, onChange }: Props) {
   const MIN_ROWS = 1;
   const MAX_ROWS = 3;
 
@@ -37,6 +36,10 @@ export default function AgeGroupPriceList({ data, onAdd, onChange }: Props) {
     };
   }
 
+  function handleAdd() {
+    onChange([...data, DEFAULT_ITEM]);
+  }
+
   const rowIsFull = data.length >= MAX_ROWS;
   const addDisabled = rowIsFull || isFullRange;
   return (
@@ -48,6 +51,7 @@ export default function AgeGroupPriceList({ data, onAdd, onChange }: Props) {
             index={i}
             required={i <= MIN_ROWS - 1}
             value={item}
+            error={errors[i]}
             onRemove={removeIndex(i)}
             onChange={updateIndex(i)}
           />
@@ -55,7 +59,7 @@ export default function AgeGroupPriceList({ data, onAdd, onChange }: Props) {
       </div>
 
       <footer>
-        <button className={styles["add-btn"]} onClick={onAdd} disabled={addDisabled}>
+        <button className={styles["add-btn"]} onClick={handleAdd} disabled={addDisabled}>
           <span>+</span>新增價格設定
         </button>
       </footer>

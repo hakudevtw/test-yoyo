@@ -3,6 +3,7 @@ import type { AgeGroupPriceType, RangeType } from "../../schemas/form";
 import { FormControl, FormLabel, FormItem, FormMessage } from "../ui/form";
 import { Select, Option } from "../ui/select";
 import styles from "./age-group-select.module.css";
+import { MAX_AGE, MIN_AGE } from "../../constants";
 
 interface Props {
   range: RangeType;
@@ -10,8 +11,6 @@ interface Props {
   error?: string;
 }
 
-export const MAX_AGE = 20;
-export const MIN_AGE = 0;
 const AGES = [...Array(MAX_AGE - MIN_AGE + 1)].map((_, i) => i);
 
 export default function AgeGroupSelect({ range, onChange, error }: Props) {
