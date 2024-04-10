@@ -1,0 +1,7 @@
+.rows > :not(:last-child) {
+  --row-gap: 1rem;
+
+  margin-bottom: var(--row-gap);
+  padding-bottom: var(--row-gap);
+  border-bottom: 1px solid var(--color-gray-500);
+}

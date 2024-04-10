@@ -1,9 +1,9 @@
-import PriceInput from "./components/form/price-input";
+import AgeGroupPriceList from "./components/age-group-price-list";
 
 function App() {
   return (
     <main>
-      <PriceInput />
+      <AgeGroupPriceList />
     </main>
   );
 }
