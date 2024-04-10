@@ -1,9 +1,14 @@
-import AgeGroupPriceList from "./components/age-group-price-list";
+import AgeGroupPriceList from "./components/form/age-group-price-list";
+import type { AgeGroupPriceType } from "./schemas/form";
 
 function App() {
+  function handleChange(value: AgeGroupPriceType[]) {
+    console.log(value);
+  }
+
   return (
     <main>
-      <AgeGroupPriceList />
+      <AgeGroupPriceList onChange={handleChange} />
     </main>
   );
 }

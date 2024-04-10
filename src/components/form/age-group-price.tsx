@@ -1,14 +1,22 @@
 import AgeGroupSelect from "./age-group-select";
 import PriceInput from "./price-input";
 import styles from "./age-group-price.module.css";
+import type { AgeGroupPriceType } from "../../schemas/form";
 
 interface Props {
   index: number;
   required?: boolean;
   onRemove: (index: number) => void;
+  value: AgeGroupPriceType;
+  onChange?: (result: AgeGroupPriceType) => void;
 }
 
-export default function AgeGroupPrice({ index, required, onRemove }: Props) {
+export default function AgeGroupPrice({ index, required, value, onChange, onRemove }: Props) {
+  function handleChange<T extends AgeGroupPriceType>(type: keyof T, val: T[keyof T]) {
+    const updated = { ...value, [type]: val };
+    if (onChange) onChange(updated);
+  }
+
   return (
     <div className={styles["container"]}>
       <header className={styles["header"]}>
@@ -21,8 +29,8 @@ export default function AgeGroupPrice({ index, required, onRemove }: Props) {
         )}
       </header>
       <div className={styles["form"]}>
-        <AgeGroupSelect />
-        <PriceInput />
+        <AgeGroupSelect onChange={(value) => handleChange("ageGroup", value)} />
+        <PriceInput onChange={(value) => handleChange("price", value)} />
       </div>
     </div>
   );

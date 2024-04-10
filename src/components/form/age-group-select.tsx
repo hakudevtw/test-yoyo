@@ -1,15 +1,19 @@
 import { useState, type ChangeEvent } from "react";
-import type { Range } from "../../schemas/form";
+import type { AgeGroupPriceType, RangeType } from "../../schemas/form";
 import { FormControl, FormLabel, FormItem, FormMessage } from "../ui/form";
 import { Select, Option } from "../ui/select";
 import styles from "./age-group-select.module.css";
+
+interface Props {
+  onChange?: (value: AgeGroupPriceType["ageGroup"]) => void;
+}
 
 const MAX_AGE = 20;
 const MIN_AGE = 0;
 const AGES = [...Array(MAX_AGE - MIN_AGE + 1)].map((_, i) => i);
 
-export default function AgeGroupSelect() {
-  const [range, setRange] = useState<Range>([MIN_AGE, MAX_AGE]);
+export default function AgeGroupSelect({ onChange }: Props) {
+  const [range, setRange] = useState<RangeType>([MIN_AGE, MAX_AGE]);
 
   function optionIsValid(position: 0 | 1, value: number) {
     if (position === 0 && value > range[1]) return false;
@@ -19,9 +23,10 @@ export default function AgeGroupSelect() {
 
   function updateRange(position: 0 | 1) {
     return function handleChange(e: ChangeEvent<HTMLSelectElement>) {
-      const updatedRange = [...range] as Range;
+      const updatedRange = [...range] as RangeType;
       const value = Number(e.target.value);
       updatedRange[position] = value;
+      if (onChange) onChange(updatedRange);
       setRange(updatedRange);
     };
   }

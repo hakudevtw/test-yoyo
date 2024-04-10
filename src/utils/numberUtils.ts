@@ -1,18 +1,17 @@
-import type { Range } from "../schemas/form";
+import type { RangeType } from "../schemas/form";
 
-export function getNumberIntervals(ranges: Range[]) {
-  const MAX_VAL = 20;
-  const MIN_VAL = 0;
+export function getNumberIntervals(ranges: RangeType[], config?: { max: number; min: number }) {
+  const { max = 20, min = 0 } = config ?? {};
 
-  function parseRange(range: Range) {
+  function parseRange(range: RangeType) {
     const sorted = [...range].sort((a, b) => a - b);
-    if (sorted[0] < MIN_VAL) sorted[0] = MIN_VAL;
-    if (sorted[1] > MAX_VAL) sorted[1] = MAX_VAL;
+    if (sorted[0] < min) sorted[0] = min;
+    if (sorted[1] > max) sorted[1] = max;
     return sorted;
   }
 
-  const counter = Array(MAX_VAL - MIN_VAL + 1).fill(0);
-  const result: Record<string, Range[]> = { overlap: [], notInclude: [] };
+  const counter = Array(max - min + 1).fill(0);
+  const result: Record<string, RangeType[]> = { overlap: [], notInclude: [] };
 
   ranges.forEach((range) => {
     const [start, end] = parseRange(range);

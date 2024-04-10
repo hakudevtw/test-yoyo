@@ -19,6 +19,11 @@
   font-weight: bold;
 }
 
+.add-btn:disabled {
+  color: var(--color-gray-500);
+  cursor: not-allowed;
+}
+
 .add-btn > :first-child {
   font-size: x-large;
 }

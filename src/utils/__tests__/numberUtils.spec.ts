@@ -1,5 +1,5 @@
 import { addComma, getNumberIntervals } from "../numberUtils";
-import type { Range } from "../../schemas/form";
+import type { RangeType } from "../../schemas/form";
 
 describe("addComma", () => {
   test("adds comma for thousands in positive number", () => {
@@ -19,7 +19,7 @@ describe("addComma", () => {
 
 describe("getNumberIntervals", () => {
   test("handles overlapping and not included intervals", () => {
-    const input: Range[] = [
+    const input: RangeType[] = [
       [6, 11],
       [5, 8],
       [17, 20],
@@ -36,6 +36,6 @@ describe("getNumberIntervals", () => {
         [12, 13],
       ],
     };
-    expect(getNumberIntervals(input)).toEqual(expectedOutput);
+    expect(getNumberIntervals(input, { max: 20, min: 0 })).toEqual(expectedOutput);
   });
 });
