@@ -2,13 +2,10 @@ import AgeGroupPrice from "./form/age-group-price";
 import styles from "./age-group-price-list.module.css";
 
 const MOCK_ROWS = [...Array(3)];
-
-interface Props {}
+const MIN_ROWS = 1;
+const MAX_ROWS = 4;
 
 export default function AgeGroupPriceList() {
-  const MIN_ROWS = 1;
-  const MAX_ROWS = 4;
-
   function handleAdd() {
     console.log("add");
   }
