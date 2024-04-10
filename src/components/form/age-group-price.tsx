@@ -9,7 +9,7 @@ interface Props {
   required?: boolean;
   onRemove: () => void;
   value: AgeGroupPriceType;
-  onChange?: (result: AgeGroupPriceType) => void;
+  onChange: (result: AgeGroupPriceType) => void;
 }
 
 export default function AgeGroupPrice({ index, required, value, onChange, onRemove }: Props) {
@@ -17,7 +17,7 @@ export default function AgeGroupPrice({ index, required, value, onChange, onRemo
 
   function handleChange<T extends AgeGroupPriceType>(type: keyof T, val: T[keyof T]) {
     const updated = { ...value, [type]: val };
-    if (onChange) onChange(updated);
+    onChange(updated);
   }
 
   return (
@@ -36,7 +36,10 @@ export default function AgeGroupPrice({ index, required, value, onChange, onRemo
           range={value.ageGroup}
           onChange={(value) => handleChange("ageGroup", value)}
         />
-        <PriceInput value={value.price} onChange={(value) => handleChange("price", value)} />
+        <PriceInput
+          value={value.price}
+          onChange={(value) => handleChange("price", value)}
+        />
       </div>
     </div>
   );

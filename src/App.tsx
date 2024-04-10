@@ -26,23 +26,12 @@ function App() {
     setData([...data, DEFAULT_ITEM]);
   }
 
-  function handleRemove(index: number) {
-    const updated = [...data];
-    updated.splice(index, 1);
-    setData(updated);
-  }
-
   return (
     <main>
       <div className={styles["validate"]}>
         <button onClick={handleValidate}>Validate</button>
       </div>
-      <AgeGroupPriceList
-        data={data}
-        onChange={handleChange}
-        onAdd={handleAdd}
-        onRemove={handleRemove}
-      />
+      <AgeGroupPriceList data={data} onChange={handleChange} onAdd={handleAdd} />
     </main>
   );
 }

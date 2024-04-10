@@ -2,10 +2,12 @@ import { type ComponentProps } from "react";
 import styles from "./form.module.css";
 import cn from "clsx";
 
-interface FormItemProps extends ComponentProps<"div"> {}
-export function FormItem({ className, children, ...props }: FormItemProps) {
+interface FormItemProps extends ComponentProps<"div"> {
+  hasError?: boolean;
+}
+export function FormItem({ hasError, className, children, ...props }: FormItemProps) {
   return (
-    <div className={cn(styles["form-item"], className)} {...props}>
+    <div className={cn(styles["form-item"], hasError && styles["error"], className)} {...props}>
       {children}
     </div>
   );

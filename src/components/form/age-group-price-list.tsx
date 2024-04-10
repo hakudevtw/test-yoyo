@@ -3,18 +3,16 @@ import AgeGroupPrice from "./age-group-price";
 import styles from "./age-group-price-list.module.css";
 import type { AgeGroupPriceType } from "../../schemas/form";
 import { getNumberIntervals } from "../../utils/numberUtils";
-import { MAX_AGE, MIN_AGE } from "./age-group-select";
 
 interface Props {
   data: AgeGroupPriceType[];
   onChange: (result: AgeGroupPriceType[]) => void;
   onAdd: () => void;
-  onRemove: (index: number) => void;
   minRows?: number;
   maxRows?: number;
 }
 
-export default function AgeGroupPriceList({ data, onAdd, onRemove, onChange }: Props) {
+export default function AgeGroupPriceList({ data, onAdd, onChange }: Props) {
   const MIN_ROWS = 1;
   const MAX_ROWS = 3;
 
@@ -31,6 +29,14 @@ export default function AgeGroupPriceList({ data, onAdd, onRemove, onChange }: P
     };
   }
 
+  function removeIndex(index: number) {
+    return function () {
+      const updated = [...data];
+      updated.splice(index, 1);
+      onChange(updated);
+    };
+  }
+
   const rowIsFull = data.length >= MAX_ROWS;
   const addDisabled = rowIsFull || isFullRange;
   return (
@@ -42,7 +48,7 @@ export default function AgeGroupPriceList({ data, onAdd, onRemove, onChange }: P
             index={i}
             required={i <= MIN_ROWS - 1}
             value={item}
-            onRemove={() => onRemove(i)}
+            onRemove={removeIndex(i)}
             onChange={updateIndex(i)}
           />
         ))}
