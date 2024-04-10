@@ -1,4 +1,3 @@
-import type { ComponentProps } from "react";
 import { FormControl, FormLabel, FormItem, FormMessage } from "../ui/form";
 import { Select, Option } from "../ui/select";
 import styles from "./age-group-select.module.css";
@@ -8,7 +7,7 @@ interface Props {}
 export default function AgeGroupSelect({}: Props) {
   return (
     <FormItem>
-      <FormLabel>入住費用 (每人每晚)</FormLabel>
+      <FormLabel>年齡</FormLabel>
       <FormControl>
         <Select>
           <Option>0</Option>
