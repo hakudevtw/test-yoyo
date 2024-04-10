@@ -1,6 +1,3 @@
-.container {
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -10,6 +7,15 @@
 
 .header h3 {
   font-size: medium;
+}
+
+.header .remove-btn {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--color-primary-500);
+  font-size: medium;
+  font-weight: bold;
 }
 
 .form {

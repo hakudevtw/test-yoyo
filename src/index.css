@@ -1,5 +1,13 @@
 @import-normalize;
 
+:root {
+  --color-primary-500: #f77f2f;
+  --color-primary-300: #fdab74;
+  --color-primary-200: #ffd7c5;
+  --color-gray-700: #414141;
+  --color-gray-500: #858585;
+}
+
 *,
 *::after,
 *::before {
@@ -9,9 +17,22 @@
 }
 
 body {
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
-  color: rgb(65, 65, 65);
+  color: var(--color-gray-700);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen";
+}
+
+#root {
+  padding: 2rem 0;
+  min-height: 100vh;
+}
+
+#root main {
+  width: 80%;
+  margin-inline: auto;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }

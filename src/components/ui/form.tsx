@@ -5,7 +5,7 @@ import cn from "clsx";
 interface FormItemProps extends ComponentProps<"div"> {}
 export function FormItem({ className, children, ...props }: FormItemProps) {
   return (
-    <div className={cn(styles["form-item"], className)} {...props}>
+    <div className={cn(styles["form-item"], styles["error"], className)} {...props}>
       {children}
     </div>
   );

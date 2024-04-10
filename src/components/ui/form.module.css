@@ -2,8 +2,9 @@
   font-size: smaller;
 }
 
-.form-item.error input {
-  border: 2px solid rgb(247, 127, 47);
+.form-item.error input,
+.form-item.error select {
+  border: 2px solid var(--color-primary-300);
 }
 
 .form-label {
@@ -16,7 +17,7 @@
   display: flex;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgb(133, 133, 133);
+  border: 1px solid var(--color-gray-500);
 }
 
 .form-control > :first-child {
@@ -34,8 +35,13 @@
 }
 
 .form-message {
-  padding: 3px 5px;
+  display: none;
+  padding: 6px;
   border-radius: 3px;
-  background: #ffd7c5;
-  color: rgb(247, 127, 47);
+}
+
+.form-item.error .form-message {
+  display: block;
+  background: var(--color-primary-200);
+  color: var(--color-primary-500);
 }
