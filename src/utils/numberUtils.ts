@@ -2,6 +2,8 @@ import type { RangeType } from "../schemas/form";
 
 export function getNumberIntervals(ranges: RangeType[], config?: { max: number; min: number }) {
   const { max = 20, min = 0 } = config ?? {};
+  const counter = Array(max - min + 1).fill(0);
+  const result: { overlap: RangeType[]; notInclude: RangeType[] } = { overlap: [], notInclude: [] };
 
   function parseRange(range: RangeType) {
     const sorted = [...range].sort((a, b) => a - b);
@@ -10,27 +12,18 @@ export function getNumberIntervals(ranges: RangeType[], config?: { max: number; 
     return sorted;
   }
 
-  const counter = Array(max - min + 1).fill(0);
-  const result: Record<string, RangeType[]> = { overlap: [], notInclude: [] };
-
   ranges.forEach((range) => {
     const [start, end] = parseRange(range);
     for (let i = start; i <= end; i++) counter[i] += 1;
   });
 
   let rangeStart = 0;
-  for (let i = 1; i < counter.length; i++) {
+  for (let i = 1; i < counter.length + 1; i++) {
     if (counter[i] === counter[i - 1]) continue;
     if (counter[i] > 1 && counter[i - 1] > 1) continue;
 
-    if (counter[rangeStart] === 0) {
-      result["notInclude"].push([rangeStart, i - 1]);
-    }
-
-    if (counter[rangeStart] > 1) {
-      result["overlap"].push([rangeStart, i - 1]);
-    }
-
+    if (counter[rangeStart] === 0) result["notInclude"].push([rangeStart, i - 1]);
+    if (counter[rangeStart] > 1) result["overlap"].push([rangeStart, i - 1]);
     rangeStart = i;
   }
 
