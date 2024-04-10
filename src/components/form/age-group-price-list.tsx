@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import AgeGroupPrice from "./age-group-price";
 import styles from "./age-group-price-list.module.css";
 import type { AgeGroupPriceType } from "../../schemas/form";
+import { getNumberIntervals } from "../../utils/numberUtils";
 
 interface Props {
   onChange?: (result: AgeGroupPriceType[]) => void;
@@ -16,6 +17,10 @@ export default function AgeGroupPriceList({ onChange }: Props) {
   const MAX_ROWS = 3;
 
   const [result, setResult] = useState<AgeGroupPriceType[]>([DEFAULT_ITEM]);
+  const isFullRange = useMemo(() => {
+    const { notInclude } = getNumberIntervals(result.map((item) => item.ageGroup));
+    return notInclude.length === 0;
+  }, [result]);
 
   function updateIndex(index: number) {
     return function handleChange(value: AgeGroupPriceType) {
@@ -37,7 +42,7 @@ export default function AgeGroupPriceList({ onChange }: Props) {
   }
 
   const rowIsFull = result.length >= MAX_ROWS;
-  const addDisabled = rowIsFull;
+  const addDisabled = rowIsFull || isFullRange;
   return (
     <div className={styles["container"]}>
       <div className={styles["rows"]}>
