@@ -8,6 +8,8 @@ interface Props {
   onChange?: (value: AgeGroupPriceType["price"]) => void;
 }
 
+// TODO Add comma when displaying and allow decimal
+// TODO show error message
 export default function PriceInput({ onChange }: Props) {
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const value = Number(e.target.value);

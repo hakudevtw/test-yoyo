@@ -1,0 +1,14 @@
+.validate {
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+}
+
+.validate button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-primary-500);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}

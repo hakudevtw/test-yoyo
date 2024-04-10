@@ -29,6 +29,7 @@ export default function AgeGroupPrice({ index, required, value, onChange, onRemo
         )}
       </header>
       <div className={styles["form"]}>
+        {/* TODO Pass down value for default value */}
         <AgeGroupSelect onChange={(value) => handleChange("ageGroup", value)} />
         <PriceInput onChange={(value) => handleChange("price", value)} />
       </div>

@@ -3,6 +3,7 @@ import AgeGroupPrice from "./age-group-price";
 import styles from "./age-group-price-list.module.css";
 import type { AgeGroupPriceType } from "../../schemas/form";
 import { getNumberIntervals } from "../../utils/numberUtils";
+import { MAX_AGE, MIN_AGE } from "./age-group-select";
 
 interface Props {
   onChange?: (result: AgeGroupPriceType[]) => void;
@@ -10,7 +11,7 @@ interface Props {
   maxRows?: number;
 }
 
-const DEFAULT_ITEM: AgeGroupPriceType = { ageGroup: [0, 20], price: 0 };
+const DEFAULT_ITEM: AgeGroupPriceType = { ageGroup: [MAX_AGE, MIN_AGE], price: 0 };
 
 export default function AgeGroupPriceList({ onChange }: Props) {
   const MIN_ROWS = 1;

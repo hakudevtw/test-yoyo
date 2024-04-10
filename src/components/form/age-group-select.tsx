@@ -5,14 +5,16 @@ import { Select, Option } from "../ui/select";
 import styles from "./age-group-select.module.css";
 
 interface Props {
+  defaultValue?: RangeType;
   onChange?: (value: AgeGroupPriceType["ageGroup"]) => void;
 }
 
-const MAX_AGE = 20;
-const MIN_AGE = 0;
+export const MAX_AGE = 20;
+export const MIN_AGE = 0;
 const AGES = [...Array(MAX_AGE - MIN_AGE + 1)].map((_, i) => i);
 
-export default function AgeGroupSelect({ onChange }: Props) {
+// TODO show error message
+export default function AgeGroupSelect({ defaultValue, onChange }: Props) {
   const [range, setRange] = useState<RangeType>([MIN_AGE, MAX_AGE]);
 
   function optionIsValid(position: 0 | 1, value: number) {
