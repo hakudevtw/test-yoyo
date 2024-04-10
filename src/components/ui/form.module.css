@@ -2,14 +2,6 @@
   font-size: smaller;
 }
 
-.form-item input {
-  height: 2rem;
-  padding: 0 0.5rem;
-  outline: none;
-  border-radius: 0;
-  border: none;
-}
-
 .form-item.error input {
   border: 2px solid rgb(247, 127, 47);
 }
