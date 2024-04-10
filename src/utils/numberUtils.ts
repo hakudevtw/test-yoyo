@@ -1,4 +1,5 @@
-export type Range = [number, number];
+import type { Range } from "../schemas/form";
+
 export function getNumberIntervals(ranges: Range[]) {
   const MAX_VAL = 20;
   const MIN_VAL = 0;
@@ -37,7 +38,7 @@ export function getNumberIntervals(ranges: Range[]) {
   return result;
 }
 
-export function addComma(num: number) {
+export function addComma(num: number | string) {
   // with regex
   const [integer, decimal] = num.toString().split(".");
   const integerWithComma = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -53,4 +54,8 @@ export function addComma(num: number) {
   // with toLocaleString (x rounded to 2 decimal places)
   // const [integer, decimal] = num.toString().split(".");
   // return Number(integer).toLocaleString() + (decimal ? `.${decimal}` : "");
+}
+
+export function removeComma(num: number | string) {
+  return num.toString().replace(/,/g, "");
 }
