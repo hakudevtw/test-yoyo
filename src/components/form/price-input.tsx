@@ -10,7 +10,7 @@ export default function PriceInput() {
         <div className={styles["currency"]}>TWD</div>
         <Input type="number" />
       </FormControl>
-      <FormMessage>ddddd</FormMessage>
+      <FormMessage>Error Message</FormMessage>
       <FormDescription>輸入 0 表示免費</FormDescription>
     </FormItem>
   );
