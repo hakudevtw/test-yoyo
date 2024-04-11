@@ -34,7 +34,7 @@ export function addComma(num: number | string) {
   // with regex
   const [integer, decimal] = num.toString().split(".");
   const integerWithComma = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  return decimal ? `${integerWithComma}.${decimal}` : integerWithComma;
+  return typeof decimal !== "undefined" ? `${integerWithComma}.${decimal}` : integerWithComma;
 
   // with Intl Web API
   // const formatter = new Intl.NumberFormat("en-US", {
@@ -50,4 +50,12 @@ export function addComma(num: number | string) {
 
 export function removeComma(num: number | string) {
   return num.toString().replace(/,/g, "");
+}
+
+export function parseNumStr(numStr: string): string {
+  if (numStr === "") return "0";
+  if (numStr === "-" || numStr === "+") return "0";
+  if (numStr.startsWith("0.")) return numStr;
+  if (numStr.length > 1 && numStr[0] === "0") return numStr.slice(1);
+  return numStr;
 }

@@ -10,8 +10,9 @@ function App() {
   const [errors, setErrors] = useState<Partial<Record<keyof AgeGroupPriceType, string>>[]>([]);
 
   function handleValidate() {
-    const errors = validateData(data);
-    setErrors(errors);
+    const { errors, isValid } = validateData(data);
+    if (!isValid) return setErrors(errors);
+    alert("驗證通過!");
   }
 
   function handleChange(value: AgeGroupPriceType[]) {

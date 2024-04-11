@@ -1,9 +1,9 @@
-import { type ChangeEvent } from "react";
+import { type ChangeEvent, type FocusEvent, useState } from "react";
 import { Input } from "../ui/input";
 import { FormControl, FormLabel, FormItem, FormDescription, FormMessage } from "../ui/form";
 import styles from "./price-input.module.css";
 import type { AgeGroupPriceType } from "../../schemas/form";
-import { removeComma, addComma } from "../../utils/numberUtils";
+import { removeComma, addComma, parseNumStr } from "../../utils/numberUtils";
 
 interface Props {
   value: AgeGroupPriceType["price"];
@@ -11,21 +11,35 @@ interface Props {
   error?: string;
 }
 
-// TODO allow decimal
 export default function PriceInput({ value, error, onChange }: Props) {
+  const [displayValue, setDisplayValue] = useState(() => addComma(value));
+
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const value = parseFloat(removeComma(e.target.value));
-    if (Number.isNaN(value) || !Number.isSafeInteger(value)) return;
-    onChange(value as any);
+    const raw = removeComma(e.target.value);
+    const parsed = parseNumStr(raw);
+
+    if (Number.isNaN(Number(parsed))) return;
+    setDisplayValue(addComma(parsed));
+    onChange(Number(parsed));
   }
 
-  const displayValue = addComma(value);
+  function handleBlur(e: FocusEvent<HTMLInputElement>) {
+    const [integer, decimal] = e.target.value.split(".");
+    if (!decimal) setDisplayValue(integer);
+  }
+
   return (
     <FormItem hasError={!!error}>
       <FormLabel>入住費用 (每人每晚)</FormLabel>
       <FormControl>
         <div className={styles["currency"]}>TWD</div>
-        <Input type="text" inputMode="numeric" value={displayValue} onChange={handleChange} />
+        <Input
+          type="text"
+          inputMode="numeric"
+          value={displayValue}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
       </FormControl>
       <FormMessage className={error ? "" : "hide"}>{error}</FormMessage>
       <FormDescription>輸入 0 表示免費</FormDescription>
