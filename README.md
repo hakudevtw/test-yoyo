@@ -28,7 +28,7 @@
    - 選項限制 0 ~ 20，可彈性調整
    - 新增列時，初始年齡範圍為完整區間，也就是 0 ~ 20
    - 區間起始值進行限制，避免不合理的選擇
-   - 允許起始值相同
+   - 允許頭尾值相同
 
 5. [AgeGroupPriceList](https://github.com/hakudevtw/yoyo-demo/blob/main/src/components/form/age-group-price-list.tsx)
 
