@@ -24,6 +24,7 @@ export function getNumberIntervals(ranges: RangeType[], config?: { max: number; 
 
     if (counter[rangeStart] === 0) result["notInclude"].push([rangeStart, i - 1]);
     if (counter[rangeStart] > 1) result["overlap"].push([rangeStart, i - 1]);
+
     rangeStart = i;
   }
 
@@ -41,9 +42,9 @@ export function addComma(num: number | string) {
   //   minimumFractionDigits: 0,
   //   maximumFractionDigits: 20,
   // });
-  // return formatter.format(num);
+  // return formatter.format(Number(num));
 
-  // with toLocaleString (x rounded to 2 decimal places)
+  // with toLocaleString
   // const [integer, decimal] = num.toString().split(".");
   // return Number(integer).toLocaleString() + (decimal ? `.${decimal}` : "");
 }

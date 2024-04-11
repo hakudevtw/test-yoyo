@@ -1,46 +1,54 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+專案使用 [Create React App](https://github.com/facebook/create-react-app) 創建，使用 `React`、`TypeScript`、`CSS Module`
 
-## Available Scripts
+## 啟動專案
 
-In the project directory, you can run:
+1. `yarn` - 安裝依賴
+2. `yarn start` - 啟動 Localhost 預覽結果
 
-### `npm start`
+## Main Functions & Components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. [addComma](https://github.com/hakudevtw/yoyo-demo/blob/6ca076117e545e1ceea89714c235b4c25045d236/src/utils/numberUtils.ts#L33)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+   - 下方提供另外兩種自己較長使用的處理方式
 
-### `npm test`
+2. [getNumberIntervals](https://github.com/hakudevtw/yoyo-demo/blob/6ca076117e545e1ceea89714c235b4c25045d236/src/utils/numberUtils.ts#L3)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   - 運算過程確保 range 的順序為 [start, end]，只有兩個數字而已因此選擇使用原生 sort 進行排列
 
-### `npm run build`
+3. [PriceInput](https://github.com/hakudevtw/yoyo-demo/blob/main/src/components/form/price-input.tsx)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - 支援小數 & 負數
+   - 無限制最大最小值
+   - 顯示時加上千分位逗號，取得的數值為數字
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. [AgeGroupSelect](https://github.com/hakudevtw/yoyo-demo/blob/main/src/components/form/age-group-select.tsx)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   - 選項限制 0 ~ 20，可彈性調整
+   - 新增列時，初始年齡範圍為完整區間，也就是 0 ~ 20
+   - 區間起始值進行限制，避免不合理的選擇
+   - 允許起始值相同
 
-### `npm run eject`
+5. [AgeGroupPriceList](https://github.com/hakudevtw/yoyo-demo/blob/main/src/components/form/age-group-price-list.tsx)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   - 資料存放格式 `AgeGroupPrice[]`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+     ```typescript
+     interface AgeGroupPrice {
+       ageGroup: [number, number];
+       price: number;
+     }
+     ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   - 最多筆數設定為 3 筆，可彈性調整
+   - 滿足所有須間或是到達筆數上限會 disable 按鈕
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+6. [App](https://github.com/hakudevtw/yoyo-demo/blob/main/src/App.tsx)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+   - 表單的存放和驗證主要集中在 App 處理
+   - 點擊 Validate 後使用 [validateData](https://github.com/hakudevtw/yoyo-demo/blob/main/src/utils/formUtils.ts#L4) 依需求進行簡單的驗證
+     - `price` 必填
+     - 多筆 `ageGroup` 的區間不能重疊
+   - 驗證通過跳出提示，反之顯示錯誤訊息
+   - 重新對畫面任意欄位修改後會消除錯誤訊息
