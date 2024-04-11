@@ -1,4 +1,4 @@
-import type { AgeGroupPriceType } from "../schemas/form";
+import type { AgeGroupPriceType } from "../types/form";
 
 export const MAX_AGE = 20;
 export const MIN_AGE = 0;

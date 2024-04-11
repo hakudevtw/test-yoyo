@@ -1,4 +1,4 @@
-import type { AgeGroupPriceType } from "../schemas/form";
+import type { AgeGroupPriceType } from "../types/form";
 import { getNumberIntervals } from "./numberUtils";
 
 export function validateData(values: AgeGroupPriceType[]): {

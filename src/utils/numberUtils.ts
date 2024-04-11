@@ -1,4 +1,4 @@
-import type { RangeType } from "../schemas/form";
+import type { RangeType } from "../types/form";
 
 export function getNumberIntervals(ranges: RangeType[], config?: { max: number; min: number }) {
   const { max = 20, min = 0 } = config ?? {};

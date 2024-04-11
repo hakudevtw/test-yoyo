@@ -1,5 +1,5 @@
 import { addComma, getNumberIntervals } from "../numberUtils";
-import type { RangeType } from "../../schemas/form";
+import type { RangeType } from "../../types/form";
 
 describe("addComma", () => {
   test("adds comma for thousands in positive number", () => {

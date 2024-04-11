@@ -2,7 +2,7 @@ import { type ChangeEvent, type FocusEvent, useState } from "react";
 import { Input } from "../ui/input";
 import { FormControl, FormLabel, FormItem, FormDescription, FormMessage } from "../ui/form";
 import styles from "./price-input.module.css";
-import type { AgeGroupPriceType } from "../../schemas/form";
+import type { AgeGroupPriceType } from "../../types/form";
 import { removeComma, addComma, parseNumStr } from "../../utils/numberUtils";
 
 interface Props {

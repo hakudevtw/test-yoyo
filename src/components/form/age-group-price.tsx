@@ -1,7 +1,7 @@
 import AgeGroupSelect from "./age-group-select";
 import PriceInput from "./price-input";
 import styles from "./age-group-price.module.css";
-import type { AgeGroupPriceType } from "../../schemas/form";
+import type { AgeGroupPriceType } from "../../types/form";
 
 interface Props {
   index: number;

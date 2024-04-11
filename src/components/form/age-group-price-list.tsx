@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import AgeGroupPrice from "./age-group-price";
 import styles from "./age-group-price-list.module.css";
-import type { AgeGroupPriceType } from "../../schemas/form";
+import type { AgeGroupPriceType } from "../../types/form";
 import { getNumberIntervals } from "../../utils/numberUtils";
 import { DEFAULT_ITEM } from "../../constants";
 

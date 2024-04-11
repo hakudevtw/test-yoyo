@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AgeGroupPriceList from "./components/form/age-group-price-list";
-import type { AgeGroupPriceType } from "./schemas/form";
+import type { AgeGroupPriceType } from "./types/form";
 import styles from "./App.module.css";
 import { DEFAULT_ITEM } from "./constants";
 import { validateData } from "./utils/formUtils";

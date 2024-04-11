@@ -1,5 +1,5 @@
 import { type ChangeEvent } from "react";
-import type { AgeGroupPriceType, RangeType } from "../../schemas/form";
+import type { AgeGroupPriceType, RangeType } from "../../types/form";
 import { FormControl, FormLabel, FormItem, FormMessage } from "../ui/form";
 import { Select, Option } from "../ui/select";
 import styles from "./age-group-select.module.css";
