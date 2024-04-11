@@ -1,17 +1,15 @@
-import { type ChangeEvent, memo } from "react";
+import { type ChangeEvent } from "react";
 import type { AgeGroupPriceType, RangeType } from "../../schemas/form";
 import { FormControl, FormLabel, FormItem, FormMessage } from "../ui/form";
 import { Select, Option } from "../ui/select";
 import styles from "./age-group-select.module.css";
-import { MAX_AGE, MIN_AGE } from "../../constants";
+import { AGES } from "../../constants";
 
 interface Props {
   range: RangeType;
   onChange: (value: AgeGroupPriceType["ageGroup"]) => void;
   error?: string;
 }
-
-const AGES = [...Array(MAX_AGE - MIN_AGE + 1)].map((_, i) => i);
 
 export default function AgeGroupSelect({ range, onChange, error }: Props) {
   function optionIsValid(position: 0 | 1, value: number) {
@@ -49,7 +47,7 @@ export default function AgeGroupSelect({ range, onChange, error }: Props) {
           ))}
         </Select>
       </FormControl>
-      <FormMessage className={error ? "" : "hide"}>{error}</FormMessage>
+      <FormMessage className={error && "hide"}>{error}</FormMessage>
     </FormItem>
   );
 }
